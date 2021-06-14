@@ -1,0 +1,23 @@
+{
+  "name": "wotp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Seia-Soto <seia@outlook.kr>",
+  "license": "MIT",
+  "scripts": {
+    "start": "DEBUG='wotp' node src/index.js",
+    "debug": "DEBUG='*' node src/index.js"
+  },
+  "dependencies": {
+    "esm": "^3.2.25",
+    "fastify": "^3.17.0"
+  },
+  "devDependencies": {
+    "debug": "^4.3.1",
+    "eslint": "^7.28.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  }
+}
