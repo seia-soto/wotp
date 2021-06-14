@@ -9,8 +9,11 @@
     "debug": "DEBUG='*' node src/index.js"
   },
   "dependencies": {
+    "argon2": "^0.28.2",
     "esm": "^3.2.25",
-    "fastify": "^3.17.0"
+    "fastify": "^3.17.0",
+    "knex": "^0.95.6",
+    "mysql2": "^2.2.5"
   },
   "devDependencies": {
     "debug": "^4.3.1",
