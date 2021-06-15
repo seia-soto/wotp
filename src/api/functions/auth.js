@@ -24,9 +24,12 @@ export default async (request, response) => {
     // NOTE: Verify as application side first
     const payload = jwt.verify(authentication, config.app.secret)
     // NOTE: Token blacklist check
-    const [token] = await knex('tokens').select('id').where({
-      hash: crypto.createHash('md5').update(authentication).digest('hex')
-    })
+    const hash = crypto.createHash('md5').update(authentication).digest('hex')
+
+    payload.hash = hash
+    payload.token = authentication
+
+    const [token] = await knex('tokens').select('id').where({ hash })
 
     if (!token || !payload.username) {
       debug('authentication failure due to invalid token')
