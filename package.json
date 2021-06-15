@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "DEBUG='wotp' node src/index.js",
-    "debug": "DEBUG='*' node src/index.js"
+    "debug": "DEBUG='*' node src/index.js",
+    "lint": "eslint --ext .js"
   },
   "dependencies": {
     "argon2": "^0.28.2",
