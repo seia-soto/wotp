@@ -5,11 +5,9 @@ export default table => {
 
   table.text('name')
   table.integer('type')
-  table.integer('key_size')
-  table.integer('code_size')
   table.text('secret')
-  table.integer('epoch') // NOTE: TOTP only
-  table.integer('time_slice') // NOTE: HOTP only
+  table.integer('period') // NOTE: totp-only feature
+  table.integer('counter') // NOTE: hotp-only feature
 
   return table
 }

@@ -2132,6 +2132,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"notp@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "notp@npm:2.0.3"
+  checksum: 654c85fe15a97e8d934f1f08c91dc1b106e695f9c4a9d2160b6be5b206a380b1fb7e6e557a1bd20c2484bd858396de4456f1659b396be68b3d371b8d3c751d7f
+  languageName: node
+  linkType: hard
+
 "npmlog@npm:^4.1.2":
   version: 4.1.2
   resolution: "npmlog@npm:4.1.2"
@@ -3144,6 +3151,7 @@ __metadata:
     jsonwebtoken: ^8.5.1
     knex: ^0.95.6
     mysql2: ^2.2.5
+    notp: ^2.0.3
   languageName: unknown
   linkType: soft
 

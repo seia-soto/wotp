@@ -15,7 +15,8 @@
     "fastify": "^3.17.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.6",
-    "mysql2": "^2.2.5"
+    "mysql2": "^2.2.5",
+    "notp": "^2.0.3"
   },
   "devDependencies": {
     "debug": "^4.3.1",
