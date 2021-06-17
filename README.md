@@ -69,15 +69,33 @@ There are some scripts available for ease of development.
 
 ### `yarn start`
 
-Starts the wOTP server with environment vars.
+Starts the wOTP server with environment vars including deploying database.
 
 - DEBUG=wotp*
 
 ### `yarn debug`
 
+Starts the wOTP server with environment vars including deploying database.
+
+- DEBUG=*
+
+### `yarn app:start`
+
+Starts the wOTP server with environment vars.
+
+- DEBUG=wotp*
+
+### `yarn app:debug`
+
 Starts the wOTP server with environment vars.
 
 - DEBUG=*
+
+### `yarn deploy`
+
+Deploys database.
+
+**To delete all required tables before creating one, attach `-c` at the end.**
 
 ### `yarn lint`
 
@@ -101,6 +119,10 @@ yarn release --patch
 
 Prepares husky hook on your system.
 Please check out PATHs of Node.JS if this not working.
+
+### `yarn test`
+
+Runs test.
 
 # API
 
@@ -241,7 +263,7 @@ To update user data.
 
 ```json
 {
-  "status": 1,
+  "status": 0,
   "message": "user updated"
 }
 ```
@@ -293,7 +315,7 @@ To delete user.
 
 ```json
 {
-  "status": 1,
+  "status": 0,
   "message": "user deleted"
 }
 ```
@@ -410,7 +432,7 @@ To delete all tokens.
 
 ```json
 {
-  "status": 1,
+  "status": 0,
   "message": "session cleared"
 }
 ```
