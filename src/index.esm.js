@@ -7,15 +7,18 @@ import debug from './debug'
 
 const app = fastify()
 
-const init = async () => {
-  await database.init()
+app.decorate('config', config)
+app.decorate('debug', debug)
+app.decorate('terminate', () => new Promise((resolve, reject) => {
+  debug('exiting')
 
-  // NOTE: Fastify initiation
-  app.register(api.v1, { prefix: 'v1' })
+  database.knex.destroy(() => {
+    debug('finalized database connections')
 
-  const address = await app.listen(config.app.port)
+    resolve()
+  })
+}))
 
-  debug('listening on', address)
-}
+app.register(api.v1, { prefix: 'v1' })
 
-init()
+export default () => app
