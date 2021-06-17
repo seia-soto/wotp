@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js",
     "release": "standard-version",
     "prepare": "husky install",
-    "test": "yarn deploy -c && tap --reporter=list"
+    "test": "yarn deploy -c && tap --reporter=list --no-check-coverage"
   },
   "dependencies": {
     "argon2": "^0.28.2",
