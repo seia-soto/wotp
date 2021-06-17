@@ -8,7 +8,8 @@
     "start": "DEBUG='wotp' node src/index.js",
     "debug": "DEBUG='*' node src/index.js",
     "lint": "eslint --ext .js",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepare": "husky install"
   },
   "dependencies": {
     "argon2": "^0.28.2",
@@ -27,6 +28,7 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
+    "husky": "^6.0.0",
     "standard-version": "^9.3.0"
   }
 }
