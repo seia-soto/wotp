@@ -31,7 +31,7 @@ export default {
         })
 
       return {
-        status: 1,
+        status: 0,
         message: 'otps retrieved',
         otps
       }
