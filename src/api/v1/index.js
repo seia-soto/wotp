@@ -5,6 +5,7 @@ import createToken from './createToken'
 import deleteToken from './deleteToken'
 import createOTP from './createOTP'
 import listOTP from './listOTP'
+import deleteOTP from './deleteOTP'
 
 export default (fastify, opts, done) => {
   // URL: /users
@@ -19,6 +20,7 @@ export default (fastify, opts, done) => {
   // URL:O /otps
   fastify.route(createOTP)
   fastify.route(listOTP)
+  fastify.route(deleteOTP)
 
   done()
 }
