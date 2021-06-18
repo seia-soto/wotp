@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/seia-soto/wotp/compare/v1.0.0...v1.1.0) (2021-06-18)
+
+
+### Features
+
+* add clean option to database initialization ([31875eb](https://github.com/seia-soto/wotp/commit/31875eb795eb0634f029023fe404b533db5f3101))
+* setup husky to test before commit ([49c1b22](https://github.com/seia-soto/wotp/commit/49c1b224b5f140fe9b45a8daeb46b401486db09f))
+
 ## 1.0.0 (2021-06-17)
 
 
