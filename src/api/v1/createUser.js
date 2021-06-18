@@ -51,31 +51,20 @@ export default {
       }
     }
 
-    try {
-      const hash = await argon2.hash(password)
+    const hash = await argon2.hash(password)
 
-      await knex('users')
-        .insert({
-          username,
-          name,
-          password: hash
-        })
+    await knex('users')
+      .insert({
+        username,
+        name,
+        password: hash
+      })
 
-      debug('user creation success for username:', username)
+    debug('user creation success for username:', username)
 
-      return {
-        status: 0,
-        message: 'user created'
-      }
-    } catch (error) {
-      debug('user creation failed due to error:', error)
-
-      response.code(418)
-
-      return {
-        status: 1,
-        message: 'user creation failed due to unknown reason'
-      }
+    return {
+      status: 0,
+      message: 'user created'
     }
   }
 }

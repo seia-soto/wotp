@@ -45,28 +45,17 @@ export default {
       }
     }
 
-    try {
-      if (request.body.password) {
-        request.body.password = await argon2.hash(request.body.password)
-      }
+    if (request.body.password) {
+      request.body.password = await argon2.hash(request.body.password)
+    }
 
-      await knex('users').update(request.body).where({ username })
+    await knex('users').update(request.body).where({ username })
 
-      debug('user update success for username:', username)
+    debug('user update success for username:', username)
 
-      return {
-        status: 0,
-        message: 'user updated'
-      }
-    } catch (error) {
-      debug('user update failed due to error:', error)
-
-      response.code(418)
-
-      return {
-        status: 1,
-        message: 'user update failed due to unknown reason'
-      }
+    return {
+      status: 0,
+      message: 'user updated'
     }
   }
 }

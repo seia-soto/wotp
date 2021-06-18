@@ -34,52 +34,41 @@ export default {
       password
     } = request.body
 
-    try {
-      const [user] = await knex('users').select('id', 'password').where({ username })
+    const [user] = await knex('users').select('id', 'password').where({ username })
 
-      if (!user) {
-        debug('user deletion failed due to token and credential mismatch')
+    if (!user) {
+      debug('user deletion failed due to token and credential mismatch')
 
-        await knex('tokens').where({ hash }).del()
+      await knex('tokens').where({ hash }).del()
 
-        return {
-          status: 2,
-          message: 'user deletion failed due to credential mismatch'
-        }
+      return {
+        status: 2,
+        message: 'user deletion failed due to credential mismatch'
       }
+    }
 
-      if (!await argon2.verify(user.password, password)) {
-        debug('user deletion failed due to password mismatch')
-
-        return {
-          status: 1,
-          message: 'user deletion failed due to password mismatch'
-        }
-      }
-
-      const trx = await knex.transaction()
-
-      await trx('users').where({ username }).del()
-        .catch(trx.rollback)
-      await trx('tokens').where({ user_id: user.id }).del()
-        .then(trx.commit)
-        .catch(trx.rollback)
-
-      debug('user deleted for username:', username)
+    if (!await argon2.verify(user.password, password)) {
+      debug('user deletion failed due to password mismatch')
 
       return {
         status: 1,
-        message: 'user deleted'
+        message: 'user deletion failed due to password mismatch'
       }
-    } catch (error) {
-      debug('user deletion failed due to error:', error)
+    }
 
-      response.code(418)
+    const trx = await knex.transaction()
 
-      return {
-        status: 1,
-        message: 'user deletion failed due to unknown reason'
-      }
+    await trx('users').where({ username }).del()
+      .catch(trx.rollback)
+    await trx('tokens').where({ user_id: user.id }).del()
+      .then(trx.commit)
+      .catch(trx.rollback)
+
+    debug('user deleted for username:', username)
+
+    return {
+      status: 1,
+      message: 'user deleted'
     }
   }
 }

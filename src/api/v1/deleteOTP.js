@@ -30,30 +30,19 @@ export default {
       id: otpId
     } = request.body
 
-    try {
-      const [{ id }] = await knex('users').select('id').where({ username })
-      await knex('otps')
-        .where({
-          id: otpId,
-          user_id: id
-        })
-        .del()
+    const [{ id }] = await knex('users').select('id').where({ username })
+    await knex('otps')
+      .where({
+        id: otpId,
+        user_id: id
+      })
+      .del()
 
-      debug('otp deleted from username:', username)
+    debug('otp deleted from username:', username)
 
-      return {
-        status: 0,
-        message: 'otp deleted'
-      }
-    } catch (error) {
-      debug('otp deletion failed due to error:', error)
-
-      response.code(418)
-
-      return {
-        status: 1,
-        message: 'otp deletion failed due to unknown reason'
-      }
+    return {
+      status: 0,
+      message: 'otp deleted'
     }
   }
 }

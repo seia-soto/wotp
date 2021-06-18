@@ -52,47 +52,36 @@ export default {
       }
     }
 
-    try {
-      if (!await argon2.verify(user.password, password)) {
-        debug('user authentication failed due to invalid password for user:', username)
+    if (!await argon2.verify(user.password, password)) {
+      debug('user authentication failed due to invalid password for user:', username)
 
-        response.code(403)
-
-        return {
-          status: 1,
-          message: 'invalid password'
-        }
-      }
-
-      const token = jwt.sign({
-        username,
-        agent: request['user-agent'] || 'unknown',
-        creation: Date.now()
-      }, config.app.secret, {
-        expiresIn: '1w'
-      })
-
-      await knex('tokens').insert({
-        user_id: user.id,
-        hash: crypto.createHash('md5').update(token).digest('hex')
-      })
-
-      debug('user authentication success for username:', username)
-
-      return {
-        status: 0,
-        message: 'token created',
-        token
-      }
-    } catch (error) {
-      debug('user authentication failed due to error:', error)
-
-      response.code(418)
+      response.code(403)
 
       return {
         status: 1,
-        message: 'user authentication failed due to unknown reason'
+        message: 'invalid password'
       }
+    }
+
+    const token = jwt.sign({
+      username,
+      agent: request['user-agent'] || 'unknown',
+      creation: Date.now()
+    }, config.app.secret, {
+      expiresIn: '1w'
+    })
+
+    await knex('tokens').insert({
+      user_id: user.id,
+      hash: crypto.createHash('md5').update(token).digest('hex')
+    })
+
+    debug('user authentication success for username:', username)
+
+    return {
+      status: 0,
+      message: 'token created',
+      token
     }
   }
 }

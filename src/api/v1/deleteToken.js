@@ -33,35 +33,24 @@ export default {
       password
     } = request.body
 
-    try {
-      const [user] = await knex('users').select('id', 'password').where({ username })
+    const [user] = await knex('users').select('id', 'password').where({ username })
 
-      if (!await argon2.verify(user.password, password)) {
-        debug('token deletion failed due to password mismatch')
-
-        return {
-          status: 1,
-          message: 'session clearance failed due to password mismatch'
-        }
-      }
-
-      await knex('tokens').where({ user_id: user.id }).del()
-
-      debug('token deletion from username:', username)
+    if (!await argon2.verify(user.password, password)) {
+      debug('token deletion failed due to password mismatch')
 
       return {
         status: 1,
-        message: 'session cleared'
+        message: 'session clearance failed due to password mismatch'
       }
-    } catch (error) {
-      debug('token deletion failed due to error:', error)
+    }
 
-      response.code(418)
+    await knex('tokens').where({ user_id: user.id }).del()
 
-      return {
-        status: 1,
-        message: 'session clearance failed due to unknown reason'
-      }
+    debug('token deletion from username:', username)
+
+    return {
+      status: 1,
+      message: 'session cleared'
     }
   }
 }

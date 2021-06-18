@@ -226,17 +226,6 @@ To create user.
 }
 ```
 
-**Failure - ISE** (0x1)
-
-- Code: `418`
-
-```json
-{
-  "status": 1,
-  "message": "user creation failed due to unknown reason"
-}
-```
-
 ### `PATCH /users`
 
 To update user data.
@@ -276,17 +265,6 @@ To update user data.
 {
   "status": 1,
   "message": "user update failure due to undefined data"
-}
-```
-
-**Failure - ISE** (0x1)
-
-- Code: `418`
-
-```json
-{
-  "status": 1,
-  "message": "user update failed due to unknown reason"
 }
 ```
 
@@ -335,15 +313,6 @@ To delete user.
 {
   "status": 1,
   "message": "user deletion failed due to password mismatch"
-}
-```
-
-**Failure - ISE** (0x1)
-
-```json
-{
-  "status": 1,
-  "message": "user deletion failed due to unknown reason"
 }
 ```
 
@@ -396,17 +365,6 @@ To create token to authenticate.
 }
 ```
 
-**Failure - ISE** (0x1)
-
-- Code: `418`
-
-```json
-{
-  "status": 1,
-  "message": "user authentication failed due to unknown reason"
-}
-```
-
 ### `DELETE /tokens`
 
 To delete all tokens.
@@ -446,17 +404,6 @@ To delete all tokens.
 }
 ```
 
-**Failure - ISE** (0x1)
-
-- Code: `418`
-
-```json
-{
-  "status": 1,
-  "message": "session clearance failed due to unknown reason"
-}
-```
-
 ### `GET /otps`
 
 To list all otps registered.
@@ -489,15 +436,6 @@ To list all otps registered.
       "period": 30
     }
   ]
-}
-```
-
-**Failure - ISE** (0x1)
-
-```json
-{
-  "status": 1,
-  "message": "listing otps failed due to unknown reason"
 }
 ```
 
@@ -552,17 +490,6 @@ To register new OTP.
 }
 ```
 
-**Failure - ISE** (0x1)
-
-- Code: `418`
-
-```json
-{
-  "status": 1,
-  "message": "otp registeration failed due to unknown error"
-}
-```
-
 ### `DELETE /otps`
 
 To delete specific OTP.
@@ -592,17 +519,6 @@ To delete specific OTP.
 {
   "status": 1,
   "message": "otp deleted"
-}
-```
-
-**Failure - ISE** (0x1)
-
-- Code: `418`
-
-```json
-{
-  "status": 1,
-  "message": "otp deletion failed due to unknown reason"
 }
 ```
 

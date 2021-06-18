@@ -79,35 +79,24 @@ export default {
       }
     }
 
-    try {
-      const [{ id }] = await knex('users')
-        .select('id')
-        .where({
-          username
-        })
-      await knex('otps')
-        .insert({
-          user_id: id,
-          name,
-          type: WOTP_OTP_TYPES.indexOf(type),
-          secret: psk,
-          counter,
-          period
-        })
+    const [{ id }] = await knex('users')
+      .select('id')
+      .where({
+        username
+      })
+    await knex('otps')
+      .insert({
+        user_id: id,
+        name,
+        type: WOTP_OTP_TYPES.indexOf(type),
+        secret: psk,
+        counter,
+        period
+      })
 
-      return {
-        status: 0,
-        message: 'otp registered'
-      }
-    } catch (error) {
-      debug('otp registeration failed due to unknown error:', error)
-
-      response.code(418)
-
-      return {
-        status: 1,
-        message: 'otp registeration failed due to unknown error'
-      }
+    return {
+      status: 0,
+      message: 'otp registered'
     }
   }
 }
