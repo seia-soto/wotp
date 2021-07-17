@@ -44,7 +44,7 @@ export default {
     if (!user) {
       debug('user authentication failed due to undefined user:', username)
 
-      response.code(418)
+      response.code(403)
 
       return {
         status: 1,

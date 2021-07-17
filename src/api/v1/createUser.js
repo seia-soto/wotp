@@ -43,7 +43,7 @@ export default {
     if ((await knex('users').select('id').where({ username })).length) {
       debug('user creation failed due to username conflict:', username)
 
-      response.code(418)
+      response.code(400)
 
       return {
         status: 1,
